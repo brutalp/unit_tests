@@ -7,13 +7,21 @@ def check_connect():
 
 
 def check_method(req, test):
+    f = open('tests.log', 'a')
     if 'result' in req:
+        f.write('test ' + test + ' passed ' + str(req['result']) + '\n')
+        f.close()
         print('test ' + test + ' passed', req['result'])
         return req['result']
     elif 'error' in req:
+        f.write('test ' + test + ' has an error ' + str(req['error']) + '\n')
+        f.close()
         print('test ' + test + ' has an error', req['error'])
     else:
+        f.write(req + '\n')
+        f.close()
         print(req)
+
 
 
 def destroy_object(uuid):
